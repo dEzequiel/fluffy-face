@@ -1,0 +1,15 @@
+{
+  "name": "fluffy-face",
+  "version": "1.0.0",
+  "description": "Frontend build with vanilla web components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "live": "live-server"
+  },
+  "author": "Ezequiel De La Rosa",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.1.0"
+  }
+}
