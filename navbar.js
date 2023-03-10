@@ -60,13 +60,10 @@ template.innerHTML = `
 class NavBar extends HTMLElement {
     constructor(){
         super();
-
         const shadowRoot = this.attachShadow({ mode: 'open' });
         let clone = template.content.cloneNode(true);
-
         shadowRoot.append(clone);
     }
-
 }
 
 customElements.define('nav-bar', NavBar);
