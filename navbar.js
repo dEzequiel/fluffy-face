@@ -4,9 +4,10 @@
 const template = document.createElement('template')
 template.innerHTML = `
 <style>
- li, a {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+    li, a {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 16px;
             color: black;
             text-decoration: none;
@@ -18,13 +19,14 @@ template.innerHTML = `
             align-items: center;
             padding: 30px 10%;
             background-color: #ffffff;
-            height: 25px;
+            height: 15px;
+            box-shadow: 0 -6px 5px 5px rgba(0,0,0,0.5);
         }
 
         .logo {
             cursor: pointer;
             margin-right: auto;
-            width: 150px;
+            width: 100px;
         }
 
         .nav_links {
