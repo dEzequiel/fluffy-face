@@ -1,10 +1,8 @@
 // This file will be the navbar web component.
 
 // Template
-const template = document.createElement('template')
-template.innerHTML = `
+let template = `
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
     li, a {
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
@@ -21,6 +19,7 @@ template.innerHTML = `
             background-color: #ffffff;
             height: 15px;
             box-shadow: 0 -6px 5px 5px rgba(0,0,0,0.5);
+            margin-bottom: 60px;
         }
 
         .logo {
@@ -39,11 +38,12 @@ template.innerHTML = `
         }
 
         .nav_links li a {
-                transition: all 0.3s ease 0s;
+            color: #232323;
+            transition: all 0.3s ease 0s;
         }
 
         .nav_links li a:hover {
-            color: #0088a9;
+            color: var(--hover-blue);
         }
 </style>
 
@@ -63,8 +63,7 @@ class NavBar extends HTMLElement {
     constructor(){
         super();
         const shadowRoot = this.attachShadow({ mode: 'open' });
-        let clone = template.content.cloneNode(true);
-        shadowRoot.append(clone);
+        shadowRoot.innerHTML = template;
     }
 }
 
