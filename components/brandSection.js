@@ -36,8 +36,10 @@ var template = `
         }
 
         .card .image-wrapper img {
-            height: 180px;
-            width: 290px;
+            height: 200px;
+            width: 200px;
+            margin: 0;
+            padding: 0;
         }
 
         .card .brand-info-wrapper {
@@ -61,13 +63,11 @@ var template = `
         <div class="container">
               <div class="card">
                 <div class="image-wrapper">
-                        <img src="assets/brand-logos/cube.png" id="brand-logo" alt="card-bike">
+                        <img src="" id="logo" alt="card-bike">
                  </div>
                     <div class="brand-info-wrapper">
-                        <h2 id="brand-name">CUBE </h2>
-                        <p id="brand-decription">Themes in the Mobirise website builder offer multiple blocks: intros,
-                        sliders, galleries, forms, articles, and so on. Start a project and click on the
-                        red plus buttons to see the blocks available for your theme.</p>
+                        <h2 id="name"></h2>
+                        <p id="description"></p>
                     </div>
             </div>
         </div>
@@ -79,6 +79,39 @@ class BrandSection extends HTMLElement {
         const shadowRoot = this.attachShadow({ mode: 'open' });
         shadowRoot.innerHTML = template;
 
+    }
+
+    static get observedAttributes() {
+        return ['name', 'description', 'logo']
+    }
+
+    get name() { return this.getAttribute('name'); }
+    set name(value) { this.setAttribute('name', value); }
+
+    get description() { return this.getAttribute('description'); }
+    set description(value) { this.setAttribute('description', value); }
+
+    get logo() { return this.getAttribute('logo'); }
+    set logo(value) { return this.setAttribute('logo', value) }
+
+    attributeChangedCallback(attrName, oldVal, newVal) {
+        if(attrName.toLowerCase() === 'name') {
+            // Peticion API
+            // Asigno un valor a los atributos con el resultado de la API.
+            // this.setAttribute('logo', valor de la peticion);
+            const idNameTag = this.shadowRoot.getElementById('name');
+            idNameTag.textContent = newVal;
+        }
+
+        if(attrName.toLowerCase() === 'description') {
+            const idDescriptionTag = this.shadowRoot.getElementById('description');
+            idDescriptionTag.textContent = newVal;
+        }
+
+        if(attrName.toLowerCase() === 'logo') {
+            const idLogoTag = this.shadowRoot.getElementById('logo');
+            idLogoTag.src = newVal;
+        }
     }
 }
 
