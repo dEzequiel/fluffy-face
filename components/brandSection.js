@@ -1,3 +1,6 @@
+import { getBrandByName, getBrands } from "../firebase.js";
+
+var storedBrands = await getBrands();
 
 var template = `
     <style>
@@ -34,6 +37,12 @@ var template = `
             transform: scale(1.05);
             box-shadow: 0px 1px 5px -1px gray;
 
+        }
+
+        .card .image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .card .image-wrapper img {
@@ -75,47 +84,53 @@ var template = `
     </section>`;
 
 class BrandSection extends HTMLElement {
-    constructor() {
-        super();
-        const shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.innerHTML = template;
+  constructor() {
+    super();
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.innerHTML = template;
+  }
 
+  static get observedAttributes() {
+    return ["name"];
+  }
+
+  get name() {
+    return this.getAttribute("name");
+  }
+  set name(value) {
+    this.setAttribute("name", value);
+  }
+
+  get description() {
+    return this.getAttribute("description");
+  }
+  set description(value) {
+    this.setAttribute("description", value);
+  }
+
+  get logo() {
+    return this.getAttribute("logo");
+  }
+  set logo(value) {
+    return this.setAttribute("logo", value);
+  }
+
+  async attributeChangedCallback(attrName, oldVal, newVal) {
+    if (attrName.toLowerCase() === "name") {
+      // Peticion API
+      // Asigno un valor a los atributos con el resultado de la API.
+      // this.setAttribute('logo', valor de la peticion);
+      const idNameTag = this.shadowRoot.getElementById("name");
+      const idDescriptionTag = this.shadowRoot.getElementById("description");
+      const idLogoTag = this.shadowRoot.getElementById("logo");
+
+      const brand = storedBrands.find((doc) => doc.name == newVal);
+
+      idNameTag.textContent = brand.name;
+      idDescriptionTag.textContent = brand.description;
+      idLogoTag.src = brand.logo;
     }
-
-    static get observedAttributes() {
-        return ['name', 'description', 'logo']
-    }
-
-    get name() { return this.getAttribute('name'); }
-    set name(value) { this.setAttribute('name', value); }
-
-    get description() { return this.getAttribute('description'); }
-    set description(value) { this.setAttribute('description', value); }
-
-    get logo() { return this.getAttribute('logo'); }
-    set logo(value) { return this.setAttribute('logo', value) }
-
-    async attributeChangedCallback(attrName, oldVal, newVal) {
-        if(attrName.toLowerCase() === 'name') {
-            // Peticion API
-            // Asigno un valor a los atributos con el resultado de la API.
-            // this.setAttribute('logo', valor de la peticion);
-            const idNameTag = this.shadowRoot.getElementById('name');
-            idNameTag.textContent = newVal;
-
-        }
-
-        if(attrName.toLowerCase() === 'description') {
-            const idDescriptionTag = this.shadowRoot.getElementById('description');
-            idDescriptionTag.textContent = newVal;
-        }
-
-        if(attrName.toLowerCase() === 'logo') {
-            const idLogoTag = this.shadowRoot.getElementById('logo');
-            idLogoTag.src = newVal;
-        }
-    }
-
+  }
 }
 
-customElements.define('brand-section', BrandSection);
+customElements.define("brand-section", BrandSection);
