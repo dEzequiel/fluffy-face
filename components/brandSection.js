@@ -1,3 +1,4 @@
+
 var template = `
     <style>
         body {
@@ -94,13 +95,14 @@ class BrandSection extends HTMLElement {
     get logo() { return this.getAttribute('logo'); }
     set logo(value) { return this.setAttribute('logo', value) }
 
-    attributeChangedCallback(attrName, oldVal, newVal) {
+    async attributeChangedCallback(attrName, oldVal, newVal) {
         if(attrName.toLowerCase() === 'name') {
             // Peticion API
             // Asigno un valor a los atributos con el resultado de la API.
             // this.setAttribute('logo', valor de la peticion);
             const idNameTag = this.shadowRoot.getElementById('name');
             idNameTag.textContent = newVal;
+
         }
 
         if(attrName.toLowerCase() === 'description') {
@@ -113,6 +115,7 @@ class BrandSection extends HTMLElement {
             idLogoTag.src = newVal;
         }
     }
+
 }
 
 customElements.define('brand-section', BrandSection);
