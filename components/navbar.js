@@ -48,7 +48,7 @@ let template = `
 </style>
 
    <header>
-        <img class="logo" src="assets/logo.png" alt="logo">
+        <img class="logo" src="../assets/logo.png" alt="logo">
             <nav>
                 <ul class="nav_links">
                 <li><a href="#">About us</a></li>

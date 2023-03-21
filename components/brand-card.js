@@ -1,4 +1,4 @@
-import { getBrandByName, getBrands } from "../firebase.js";
+import { getBrands } from "../firebase.js";
 
 var storedBrands = await getBrands();
 
@@ -6,23 +6,18 @@ var template = `
     <style>
         body {
             background-color: #ffffff;
-
         }
-
         .container {
             font-family: 'Jost', sans-serif;
             font-size: 16px;
             padding-left: 165px;
             padding-right: 165px;
         }
-
         .text-wrapper h3 {
             font-size: 53px;
             font-weight: 600;
             text-align: center;
-
         }
-
         .card {
             cursor: pointer;
             display: flex;
@@ -32,43 +27,32 @@ var template = `
             margin-bottom: 25px;
             transition: transform 0.5s;
         }
-
         .card:hover {
             transform: scale(1.05);
             box-shadow: 0px 1px 5px -1px gray;
-
         }
-
         .card .image-wrapper {
-            display: flex;
             justify-content: center;
             align-items: center;
         }
-
         .card .image-wrapper img {
             height: 200px;
             width: 200px;
             margin: 0;
             padding: 0;
         }
-
         .card .brand-info-wrapper {
             margin-left: 30px;
-
         }
-
         .card .brand-info-wrapper h2 {
             margin-top: 30px;
             margin-bottom: 30px;
             font-size: 2rem;
         }
-
         .card .brand-info-wrapper p {
             font-size: 1.2rem;
         }
-
     </style>
-
 <section id="brand-list">
         <div class="container">
               <div class="card">
@@ -83,11 +67,14 @@ var template = `
         </div>
     </section>`;
 
-class BrandSection extends HTMLElement {
+class BrandCard extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.innerHTML = template;
+  }
+
+  connectedCallback() {
   }
 
   static get observedAttributes() {
@@ -117,9 +104,6 @@ class BrandSection extends HTMLElement {
 
   async attributeChangedCallback(attrName, oldVal, newVal) {
     if (attrName.toLowerCase() === "name") {
-      // Peticion API
-      // Asigno un valor a los atributos con el resultado de la API.
-      // this.setAttribute('logo', valor de la peticion);
       const idNameTag = this.shadowRoot.getElementById("name");
       const idDescriptionTag = this.shadowRoot.getElementById("description");
       const idLogoTag = this.shadowRoot.getElementById("logo");
@@ -133,4 +117,4 @@ class BrandSection extends HTMLElement {
   }
 }
 
-customElements.define("brand-section", BrandSection);
+customElements.define("brand-card", BrandCard);

@@ -80,13 +80,19 @@ var template = `
             </div>
         </section>`;
 
-
 class HomeSection extends HTMLElement {
-    constructor() {
-        super();
-        const shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.innerHTML = template;
-    }
+  constructor() {
+    super();
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.innerHTML = template;
+  }
+
+  connectedCallback() {
+    this.addEventListener("brand-card-clicked", (e) => {
+      const n = e.detail.name;
+      console.log(n);
+    });
+  }
 }
 
-customElements.define('home-section', HomeSection);
+customElements.define("home-section", HomeSection);
