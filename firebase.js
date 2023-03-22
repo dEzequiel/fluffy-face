@@ -1,3 +1,10 @@
+/* 
+  Este modulo es el encargado de conectarse a la base de datos de Firebase 
+  y de exportar las funciones que se utilizarán para obtener los datos de la base de datos.
+
+  Esos datos unicamente hacen referencia a la informacion de las marcas.
+*/
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
 import {
