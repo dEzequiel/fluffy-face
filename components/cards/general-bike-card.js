@@ -54,7 +54,7 @@ var template = `
     <img src="../assets/bike2.png" id="logo" alt="card-bike" />
   </div>
   <div class="bike-info-wrapper">
-    <h2 id="name">NAME</h2>
+    <h2 id="name"></h2>
     <ul id="features"></ul>
     <h2 id="price">1111$</h2>
     <div>
@@ -74,7 +74,43 @@ class BikeCard extends HTMLElement {
 
   connectedCallback() {}
 
-  async attributeChangedCallback(attrName, oldVal, newVal) {}
+  static get observedAttributes() {
+    return ["name", "price", "features", "logo"];
+  }
+
+  get name() {
+    return this.getAttribute("name");
+  }
+  set name(value) {
+    this.setAttribute("name", value);
+  }
+
+  get price() {
+    return this.getAttribute("price");
+  }
+  set price(value) {
+    this.setAttribute("price", value);
+  }
+
+  get features() {
+    return this.getAttribute("features");
+  }
+  set features(value) {
+    this.setAttribute("features", value);
+  }
+
+  get logo() {
+    return this.getAttribute("logo");
+  }
+  set logo(value) {
+    this.setAttribute("logo", value);
+  }
+
+  async attributeChangedCallback(attrName, oldVal, newVal) {
+    if (attrName === "name") {
+      this.shadowRoot.querySelector("#name").textContent = newVal;
+    }
+  }
 }
 
 customElements.define("bike-card", BikeCard);

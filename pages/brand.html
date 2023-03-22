@@ -7,7 +7,6 @@
 
     <script src="../components/navbar.js" type="module"></script>
     <script src="../components/bike-card.js" type="module"></script>
-    <script src="components/brand-card.js" type="module"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
@@ -37,11 +36,20 @@
       <h3><strong>Bike List</strong></h3>
     </div>
     <section id="bike-list">
-      <bike-card></bike-card>
-      <bike-card></bike-card>
-      <bike-card></bike-card>
-      <bike-card></bike-card>
+      <script type="module">
+        import getBikesByBrand from "./caller.js";
+
+        var bikes = await getBikesByBrand();
+
+        bikes.forEach((bike) => {
+          var bikeCard = document.createElement("bike-card");
+          bikeCard.setAttribute("name", bike.name);
+          bikeCard.setAttribute("price", bike.price);
+          bikeCard.setAttribute("image", bike.image);
+          bikeCard.setAttribute("id", bike.id);
+          document.getElementById("bike-list").appendChild(bikeCard);
+        }); 
+      </script>
     </section>
-    ;
   </body>
 </html>

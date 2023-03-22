@@ -40,6 +40,18 @@
       <brand-card name="Argon 18"></brand-card>
       <brand-card name="All City"></brand-card>
       <brand-card name="BULLS"></brand-card>
+
+      <button id="cube-button">Ir a CUBE</button>
+      <script>
+        const cubeButton = document.getElementById("cube-button");
+        cubeButton.addEventListener("click", () => {
+          const brand = "CUBE";
+          const urlParams = new URLSearchParams(window.location.search);
+          urlParams.set("brand", brand);
+          const queryString = urlParams.toString();
+          window.location.href = "/brands?brand=CUBE" + queryString;
+        });
+      </script>
     </section>
     `
   </body>

@@ -1,4 +1,4 @@
-import { getBrands } from "../firebase.js";
+import { getBrands } from "../../firebase.js";
 
 var storedBrands = await getBrands();
 
@@ -75,6 +75,10 @@ class BrandCard extends HTMLElement {
   }
 
   connectedCallback() {
+    const brandCard = this.shadowRoot.querySelector(".card");
+    brandCard.addEventListener("click", () => {
+      window.location.href = `./brand.html?name=${this.name}`;
+    });
   }
 
   static get observedAttributes() {
