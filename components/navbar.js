@@ -48,7 +48,7 @@ let template = `
 </style>
 
    <header>
-        <img class="logo" src="../pages/assets/logo.png" alt="logo">
+        <img class="logo" src="../pages/assets/logo.png" alt="logo" id="logo">
             <nav>
                 <ul class="nav_links">
                 <li><a href="#">About us</a></li>
@@ -64,6 +64,13 @@ class NavBar extends HTMLElement {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.innerHTML = template;
+  }
+
+  connectedCallback() {
+    const logo = this.shadowRoot.querySelector("#logo");
+    logo.addEventListener("click", () => {
+      location.href = "http://127.0.0.1:5500";
+    });
   }
 }
 

@@ -74,7 +74,7 @@ var template = `
                 </div>
                 </div>
                 <div class="image-wrapper">
-                    <img class="logo" src="assets/bike1.png" alt="logo">
+                    <img class="logo" src="pages/assets/bike1.png" alt="logo">
                 </div>
 
             </div>
