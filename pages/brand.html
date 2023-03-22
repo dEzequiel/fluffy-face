@@ -45,11 +45,13 @@
         var bikes = await getBikesByBrand();
 
         bikes.forEach((bike) => {
+          console.log(bike);
           var bikeCard = document.createElement("general-bike-card");
           bikeCard.setAttribute("name", bike.name);
           bikeCard.setAttribute("price", bike.price);
           bikeCard.setAttribute("image", bike.image);
           bikeCard.setAttribute("id", bike.id);
+          bikeCard.setAttribute("features", JSON.stringify(bike));
           document.getElementById("bike-list").appendChild(bikeCard);
         });
       </script>

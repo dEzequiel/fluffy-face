@@ -16,6 +16,8 @@ var template = `
     margin-top: 25px;
     margin-bottom: 25px;
     transition: transform 0.5s;
+    align-items: center;
+    
   }
 
   .card:hover {
@@ -51,7 +53,7 @@ var template = `
 <div class="container">
 <div class="card">
   <div class="image-wrapper">
-    <img src="../pages/assets/bike2.png" id="logo" alt="card-bike" />
+    <img src="../pages/assets/bike2.png" id="bike-logo" alt="card-bike" />
   </div>
   <div class="bike-info-wrapper">
     <h2 id="name"></h2>
@@ -69,6 +71,17 @@ class GeneralBikeCard extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
+    this.displayedFeatures = [
+      "brand",
+      "type",
+      "frame",
+      "fork",
+      "gears",
+      "brakes",
+      "wheels",
+      "suspension",
+      "tires",
+    ];
     shadowRoot.innerHTML = template;
   }
 
@@ -109,6 +122,23 @@ class GeneralBikeCard extends HTMLElement {
   async attributeChangedCallback(attrName, oldVal, newVal) {
     if (attrName === "name") {
       this.shadowRoot.querySelector("#name").textContent = newVal;
+    }
+
+    if (attrName === "features") {
+      const features = JSON.parse(newVal);
+      const featuresList = this.shadowRoot.querySelector("#features");
+      featuresList.innerHTML = "";
+      for (const prop in features) {
+        if (this.displayedFeatures.includes(prop)) {
+          const li = document.createElement("li");
+          const label = document.createElement("span");
+          label.style.fontWeight = "bold";
+          label.textContent = prop.toUpperCase();
+          li.appendChild(label);
+          li.innerHTML += `: ${features[prop]}`;
+          featuresList.appendChild(li);
+        }
+      }
     }
   }
 }
