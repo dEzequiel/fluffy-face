@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <script src="components/navbar.js" type="module"></script>
-    <script src="components/brand-card.js" type="module"></script>
+    <script src="../components/navbar.js" type="module"></script>
+    <script src="../components/cards/brand-card.js" type="module"></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
@@ -40,18 +40,6 @@
       <brand-card name="Argon 18"></brand-card>
       <brand-card name="All City"></brand-card>
       <brand-card name="BULLS"></brand-card>
-
-      <button id="cube-button">Ir a CUBE</button>
-      <script>
-        const cubeButton = document.getElementById("cube-button");
-        cubeButton.addEventListener("click", () => {
-          const brand = "CUBE";
-          const urlParams = new URLSearchParams(window.location.search);
-          urlParams.set("brand", brand);
-          const queryString = urlParams.toString();
-          window.location.href = "/brands?brand=CUBE" + queryString;
-        });
-      </script>
     </section>
     `
   </body>

@@ -48,7 +48,7 @@ let template = `
 </style>
 
    <header>
-        <img class="logo" src="../assets/logo.png" alt="logo">
+        <img class="logo" src="../pages/assets/logo.png" alt="logo">
             <nav>
                 <ul class="nav_links">
                 <li><a href="#">About us</a></li>
@@ -60,11 +60,11 @@ let template = `
 `;
 
 class NavBar extends HTMLElement {
-    constructor(){
-        super();
-        const shadowRoot = this.attachShadow({ mode: 'open' });
-        shadowRoot.innerHTML = template;
-    }
+  constructor() {
+    super();
+    const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.innerHTML = template;
+  }
 }
 
-customElements.define('nav-bar', NavBar);
+customElements.define("nav-bar", NavBar);

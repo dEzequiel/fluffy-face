@@ -70,7 +70,7 @@ var template = `
                     from mountain bikes to road bikes to electric bikes and everything in between.
                 </p>
                 <div>
-                    <a class="" href=""><button>Catalog </button></a>
+                    <button id="catalog">Catalog </button>
                 </div>
                 </div>
                 <div class="image-wrapper">
@@ -88,9 +88,9 @@ class HomeSection extends HTMLElement {
   }
 
   connectedCallback() {
-    this.addEventListener("brand-card-clicked", (e) => {
-      const n = e.detail.name;
-      console.log(n);
+    const catalogButton = this.shadowRoot.querySelector("#catalog");
+    catalogButton.addEventListener("click", () => {
+      location.href = "./pages/brands.html";
     });
   }
 }

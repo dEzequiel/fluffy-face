@@ -51,7 +51,7 @@ var template = `
 <div class="container">
 <div class="card">
   <div class="image-wrapper">
-    <img src="../assets/bike2.png" id="logo" alt="card-bike" />
+    <img src="../pages/assets/bike2.png" id="logo" alt="card-bike" />
   </div>
   <div class="bike-info-wrapper">
     <h2 id="name"></h2>
@@ -65,7 +65,7 @@ var template = `
 </div>
 `;
 
-class BikeCard extends HTMLElement {
+class GeneralBikeCard extends HTMLElement {
   constructor() {
     super();
     const shadowRoot = this.attachShadow({ mode: "open" });
@@ -113,4 +113,4 @@ class BikeCard extends HTMLElement {
   }
 }
 
-customElements.define("bike-card", BikeCard);
+customElements.define("general-bike-card", GeneralBikeCard);

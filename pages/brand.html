@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <script src="../components/navbar.js" type="module"></script>
-    <script src="../components/bike-card.js" type="module"></script>
+    <script
+      src="../components/cards/general-bike-card.js"
+      type="module"
+    ></script>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap");
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
@@ -37,18 +40,18 @@
     </div>
     <section id="bike-list">
       <script type="module">
-        import getBikesByBrand from "./caller.js";
+        import getBikesByBrand from "../fluffy-bike.js";
 
         var bikes = await getBikesByBrand();
 
         bikes.forEach((bike) => {
-          var bikeCard = document.createElement("bike-card");
+          var bikeCard = document.createElement("general-bike-card");
           bikeCard.setAttribute("name", bike.name);
           bikeCard.setAttribute("price", bike.price);
           bikeCard.setAttribute("image", bike.image);
           bikeCard.setAttribute("id", bike.id);
           document.getElementById("bike-list").appendChild(bikeCard);
-        }); 
+        });
       </script>
     </section>
   </body>
