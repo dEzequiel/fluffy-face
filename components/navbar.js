@@ -1,6 +1,3 @@
-// This file will be the navbar web component.
-
-// Template
 let template = `
 <style>
     li, a {

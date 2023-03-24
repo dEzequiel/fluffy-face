@@ -1,3 +1,8 @@
+/* 
+    Este modulo hace referencia a un componente web custom, que sera utilizado para mostrar todas 
+    las marcas de bicicletas que se encuentran en la base de datos de Firestore.
+*/
+
 import { getBrandByName, getBrands } from "../../firebase.js";
 
 var storedBrands = await getBrands();
@@ -115,6 +120,12 @@ class BrandSection extends HTMLElement {
     return this.setAttribute("logo", value);
   }
 
+  /*
+    Si uno de los componentes que se encuentran en el DOM cambia, se ejecuta este metodo.
+    Se encarga de asignar un valor (cogido de base de datos) a los atributos del componente.
+
+    La variable `storedBrands` se encuentra al principio del modulo, ya tiene almacenada todas las marcas.
+  */
   async attributeChangedCallback(attrName, oldVal, newVal) {
     if (attrName.toLowerCase() === "name") {
       const idNameTag = this.shadowRoot.getElementById("name");

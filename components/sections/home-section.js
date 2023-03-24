@@ -1,3 +1,7 @@
+/* 
+    Este modulo hace referencia a un componente web custom, que sera utilizado en la pagina principal de la aplicacion.
+*/
+
 var template = `
     <style>
 
@@ -87,6 +91,11 @@ class HomeSection extends HTMLElement {
     shadowRoot.innerHTML = template;
   }
 
+  /*
+    Este metodo se ejecuta cuando el componente es agregado al DOM. Se anade
+    un evento al boton de catalogo para que cuando se haga click en el, se redirecciona
+    a la pagina donde se muestran las marcas disponibles.
+  */
   connectedCallback() {
     const catalogButton = this.shadowRoot.querySelector("#catalog");
     catalogButton.addEventListener("click", () => {
