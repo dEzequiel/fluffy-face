@@ -101,6 +101,8 @@ class HomeSection extends HTMLElement {
     catalogButton.addEventListener("click", () => {
       location.href = "./pages/brands.html";
     });
+
+
   }
 }
 

@@ -58,9 +58,8 @@ var template = `
   <div class="bike-info-wrapper">
     <h2 id="name"></h2>
     <ul id="features"></ul>
-    <h2 id="price">1111$</h2>
     <div>
-      <a class="" href=""><button id="rent">Rent</button></a>
+      <a class="" ><button id="rent">Rent</button></a>
     </div>
   </div>
 </div>
@@ -85,7 +84,33 @@ class GeneralBikeCard extends HTMLElement {
     shadowRoot.innerHTML = template;
   }
 
-  connectedCallback() {}
+  connectedCallback() {
+    const rentButton = this.shadowRoot.querySelector("#rent");
+    rentButton.addEventListener("click", () => {
+      const modal = document.createElement("div");
+      modal.style.position = "fixed";
+      modal.style.top = "0";
+      modal.style.left = "0";
+      modal.style.width = "100%";
+      modal.style.height = "100%";
+      modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+      modal.style.display = "flex";
+      modal.style.justifyContent = "center";
+      modal.style.alignItems = "center";
+      modal.style.zIndex = "9999";
+
+      const message = document.createElement("p");
+      message.style.fontSize = "24px";
+      message.style.color = "#fff";
+      message.textContent = "Bycicle reserved! Please check your email.";
+      modal.addEventListener("click", () => {
+        modal.remove();
+      });
+
+      modal.appendChild(message);
+      this.shadowRoot.appendChild(modal);
+    });
+  }
 
   static get observedAttributes() {
     return ["name", "price", "features", "logo"];

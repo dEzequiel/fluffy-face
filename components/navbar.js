@@ -46,13 +46,6 @@ let template = `
 
    <header>
         <img class="logo" src="../pages/assets/logo.png" alt="logo" id="logo">
-            <nav>
-                <ul class="nav_links">
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Bikes</a></li>
-                <li><a href="#">Contact us</a></li>
-                </ul>
-            </nav>
         </header>
 `;
 
