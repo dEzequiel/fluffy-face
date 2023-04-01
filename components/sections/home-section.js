@@ -64,7 +64,7 @@ var template = `
 <section id="fluffy-bike-welcome">
             <div class="container">
              <div class="text-wrapper">
-                <h1><strong>Fluffy Bike</strong></h1>
+                <h1><strong>Fluffy Face</strong></h1>
                 <p>
                     Welcome to our online store dedicated to
                     providing you with the best selection of
@@ -101,8 +101,6 @@ class HomeSection extends HTMLElement {
     catalogButton.addEventListener("click", () => {
       location.href = "./pages/brands.html";
     });
-
-
   }
 }
 
